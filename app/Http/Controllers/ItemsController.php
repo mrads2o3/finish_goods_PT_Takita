@@ -10,7 +10,8 @@ class ItemsController extends Controller
 {
 
     public function items(){
-        $itemList = Items::get();
+        $itemList = Items::orderBy('created_at', 'DESC')
+        ->get();
         return view('items', ['location'=>'Item List', 'itemList'=>$itemList]);
     }
 
@@ -38,13 +39,12 @@ class ItemsController extends Controller
 
             $itemAdd->item_code = $req->item_code;
             $itemAdd->name = $req->item_name;
-            $itemAdd->ukuran = $req->ukuran;
 
             $itemAdd->save();
 
             return redirect()->route('items')->with('success', 'Item Added!');
-        }catch(Exception $e){
-            return redirect()->route('items')->with('error', 'Erorr while input data, please check yout entry!');
+        }catch (Exception $e){
+            return redirect()->route('items')->with('error', $e->getMessage());
         }
 
     }

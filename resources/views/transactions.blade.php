@@ -22,7 +22,7 @@
                 <th>Date</th>
                 <th>Item Name</th>
                 <th>Shift</th>
-                <th>Jumlah (Pcs)</th>
+                <th>Stock (Pcs)</th>
             </tr>
         </thead>
         <tbody>
@@ -42,8 +42,8 @@
                         {{ $txs->shift }}
                     </td>
                     <td>
-                        <a href="#" class="update" data-name="jumlah" data-type="number" data-pk="{{ $txs->id }}"
-                            data-title="Edit jumlah">{{ $txs->jumlah }}
+                        <a href="#" class="update" data-name="stock" data-type="number" data-pk="{{ $txs->id }}"
+                            data-title="Edit stock">{{ $txs->stock }}
                         </a>
                     </td>
                 </tr>
@@ -60,7 +60,7 @@
                     <h5 class="modal-title" id="staticBackdropLabel"><b>Add Transaction</b></h5>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
-                <form action="{{ route('transactions.add') }}" method="POST">
+                <form action="{{ route('transactions.add') }}" id="form" method="POST">
                     <div class="modal-body">
                         @csrf
                         <span>Item Name :</span>
@@ -80,14 +80,14 @@
                             <option value="2">Shift : 2</option>
                         </select>
                         <div class="form-floating mb-3">
-                            <input type="number" class="form-control" name="jumlah" id="floatingInput"
-                                placeholder="Jumlah" @required(true)>
-                            <label for="floatingInput">Jumlah</label>
+                            <input type="number" class="form-control" name="stock" id="floatingInput"
+                                placeholder="Stock" @required(true)>
+                            <label for="floatingInput">Stock</label>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" id="btnFormSubmit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
             </div>
@@ -112,56 +112,17 @@
                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
             }
         });
-
-        // var taskAssignedUserDataArray = [{
-        //         id: 'apples',
-        //         text: 1011
-        //     },
-        //     {
-        //         id: 'oranges',
-        //         text: 'User 2'
-        //     },
-        //     {
-        //         id: 'pie',
-        //         text: 'User 3'
-        //     },
-        //     {
-        //         id: 3,
-        //         text: 'User 4'
-        //     },
-        //     {
-        //         id: 4,
-        //         text: 'User 5'
-        //     }
-        // ];
-
+    </script>
+    <script>
         $('.update').editable({
             url: "{{ route('transactions.update') }}",
             type: 'text',
             pk: 1,
             name: 'name',
             title: 'Enter name',
-            // select2: {
-            //     multiple: true,
-            //     separator: ","
-            // },
-            // source: taskAssignedUserDataArray
-            // display: function(value) {
-            //     var output = [];
-
-            //     if (!$.isArray(value)) {
-            //         value = value.split(',');
-            //     }
-
-            //     $.each(value, function(i) {
-            //         output.push("<span class='label'>" + $('<p>' + value[i] + '</p>').text() +
-            //             "</span>");
-            //     });
-
-            //     $(this).html(output.join(" "));
-            // }
         });
-
+    </script>
+    <script>    
         $(".deleteTxs").click(function() {
             var name = $(this).data("name");
             var date = $(this).data("date");

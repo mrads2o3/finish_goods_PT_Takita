@@ -17,15 +17,22 @@ class CustomerController extends Controller
     public function add(Request $req)
     {
         try {
+
+            $query = Customer::where('cust_name', $req->cust_name);
+
+            if(count($query)){
+                return back()->with('error', 'Customer name exist!');
+            }
+
             $cust = new Customer;
 
             $cust->cust_name = $req->cust_name;
 
             $cust->save();
 
-            return redirect()->route('customers')->with('success', 'Customer Added!');
+            return back()->with('success', 'Customer successfuly added!');
         } catch (Exception $e) {
-            return redirect()->route('customers')->with('error', 'Error while input data, please check your entry!');
+            return back()->with('error', $e->getMessage());
         }
     }
 

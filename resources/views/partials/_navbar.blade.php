@@ -7,14 +7,13 @@
             </div>
             <div>
                 <a class="navbar-brand brand-logo" href="#">
-                    <b>
-                        PT <b class="text-black"> Takita </b>
-                    </b>
+                    {{-- <img src="{{ url('images/takita.jpg') }}" class="w-auto" alt="logo" /> --}}
+                    <h2><b>TAKITA</b></h2>
                 </a>
                 <a class="navbar-brand brand-logo-mini" href="index.html">
-                    <b>
+                    {{-- <b>
                         P <b class="text-black"> T</b>
-                    </b>
+                    </b> --}}
                 </a>
             </div>
         </div>

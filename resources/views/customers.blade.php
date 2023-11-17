@@ -29,7 +29,7 @@
                             data-id="{{ $cust->id }}">Delete</a>
                     </td>
                     <td>
-                        <a href="#" class="update" data-name="cust_name" data-type="text"
+                        <a href="#" class="updateCust" data-name="cust_name" data-type="text"
                             data-pk="{{ $cust->id }}" data-title="Edit customer name">{{ $cust->cust_name }}
                         </a>
                     </td>
@@ -47,7 +47,7 @@
                     <h5 class="modal-title" id="staticBackdropLabel"><b>Add Item</b></h5>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
-                <form action="{{ route('customers.add') }}" method="POST">
+                <form action="{{ route('customers.add') }}" id="form" method="POST">
                     <div class="modal-body">
                         @csrf
                         <div class="form-floating mb-3">
@@ -58,7 +58,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" id="btnFormSubmit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
             </div>
@@ -84,7 +84,7 @@
             }
         });
 
-        $('.update').editable({
+        $('.updateCust').editable({
             url: "{{ route('customers.update') }}",
             type: 'text',
             pk: 1,

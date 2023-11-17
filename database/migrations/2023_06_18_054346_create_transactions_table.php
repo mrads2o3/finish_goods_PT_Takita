@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('item_name')->references('name')->on('items')->onUpdate('cascade');
             $table->date('transaction_date');
             $table->string('shift');
-            $table->integer('jumlah');
+            $table->integer('stock');
             $table->timestamps();
         });
     }

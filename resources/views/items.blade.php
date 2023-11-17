@@ -20,7 +20,6 @@
                 <th class="text-center">#</th>
                 <th>Item Code</th>
                 <th>Item Name</th>
-                <th>Ukuran</th>
             </tr>
         </thead>
         <tbody>
@@ -40,12 +39,6 @@
                             data-title="Edit name">{{ $item->name }}
                         </a>
                     </td>
-
-                    <td>
-                        <a href="#" class="update" data-name="ukuran" data-type="text" data-pk="{{ $item->id }}"
-                            data-title="Edit ukuran">{{ $item->ukuran }}
-                        </a>
-                    </td>
                 </tr>
             @endforeach
         </tbody>
@@ -60,7 +53,7 @@
                     <h5 class="modal-title" id="staticBackdropLabel"><b>Add Item</b></h5>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
-                <form action="{{ route('items.add') }}" method="POST">
+                <form action="{{ route('items.add') }}" id="form" method="POST">
                     <div class="modal-body">
                         @csrf
                         <div class="form-floating mb-3">
@@ -73,15 +66,10 @@
                                 placeholder="Item Name" @required(true)>
                             <label for="floatingInput">Item Name</label>
                         </div>
-                        <div class="form-floating">
-                            <input type="text" class="form-control" name="ukuran" id="floatingInput"
-                                placeholder="Ukuran">
-                            <label for="floatingInput">Ukuran</label>
-                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" id="btnFormSubmit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
             </div>

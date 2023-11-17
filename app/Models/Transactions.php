@@ -19,6 +19,6 @@ class Transactions extends Model
         'item_name',
         'transaction_date',
         'shift',
-        'jumlah'
+        'stock'
     ];
 }

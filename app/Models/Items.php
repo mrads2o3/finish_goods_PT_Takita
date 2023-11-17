@@ -16,8 +16,7 @@ class Items extends Model
      */
     protected $fillable = [
         'item_code',
-        'name',
-        'ukuran'
+        'name'
     ];
     
 }

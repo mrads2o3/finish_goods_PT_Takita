@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('item_code')->unique()->index();
             $table->string('name')->index();
-            $table->string('ukuran');
             $table->timestamps();
         });
     }
