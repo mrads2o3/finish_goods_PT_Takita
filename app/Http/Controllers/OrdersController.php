@@ -20,12 +20,11 @@ class OrdersController extends Controller
     {
         $order = orders::query()
             ->join('customers', 'customers.id', '=', 'orders.cust_id')
-            ->select('orders.id', 'customers.cust_name', 'orders.request_date', 'orders.send_date', 'status', 'orders.updated_at', 'orders.sending_at', 'orders.cancel_at', 'orders.complete_at')
+            ->select('orders.id', 'orders.order_id','customers.cust_name', 'orders.request_date', 'orders.send_date', 'status', 'orders.updated_at', 'orders.sending_at', 'orders.cancel_at', 'orders.complete_at')
             ->get();
 
-
         $cust = Customer::get();
-
+        // dd($order);
         return view('orders', ['location' => 'Orders', 'orders' => $order, 'cust' => $cust]);
     }
 
@@ -33,7 +32,7 @@ class OrdersController extends Controller
     {
         $order = orders::query()
             ->join('customers', 'customers.id', '=', 'orders.cust_id')
-            ->select('orders.id', 'customers.cust_name', 'orders.request_date', 'orders.send_date', 'status', 'orders.updated_at', 'orders.sending_at', 'orders.cancel_at', 'orders.complete_at')
+            ->select('orders.id', 'orders.order_id', 'customers.cust_name', 'orders.request_date', 'orders.send_date', 'status', 'orders.updated_at', 'orders.sending_at', 'orders.cancel_at', 'orders.complete_at')
             ->where('orders.id', '=', $id)
             ->get();
 
@@ -61,7 +60,13 @@ class OrdersController extends Controller
             }
 
             $order = new orders();
-
+            $query = orders::orderBy('id', 'desc')->first();
+            if($query){
+                $id = ($query->id) + 1;
+            }else{
+                $id = 1;
+            }
+            $order->order_id = 'CS' . str_pad($id, 4, '0', STR_PAD_LEFT);
             $order->cust_id = $req->cust_id;
             $order->request_date = $req->request_date;
             $order->send_date = $req->send_date;

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->string('order_id')->unique();
             $table->bigInteger('cust_id')->unsigned()->index();
             $table->foreign('cust_id')->references('id')->on('customers')->onUpdate('cascade');
             $table->date('request_date');

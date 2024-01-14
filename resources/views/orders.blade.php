@@ -28,7 +28,7 @@
             @foreach ($orders as $item)
                 <tr>
                     <td>
-                        {{ $item->id }}
+                        {{ $item->order_id }}
                     </td>
                     <td>
                         <a href="{{ url('orders/'.$item->id) }}">{{ $item->cust_name }}</a>

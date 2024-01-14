@@ -7,6 +7,7 @@
     @php
         foreach ($orders as $item) {
             $orderid = $item->id;
+            $order_id = $item->order_id;
             $custname = $item->cust_name;
             $request = $item->request_date;
             $send = $item->send_date;
@@ -37,7 +38,7 @@
             <div class="row">
                 <hr>
                 <div class="col">ORDER ID</div>
-                <div class="col">: {{ $orderid }}</div>
+                <div class="col">: {{ $order_id }}</div>
             </div>
             <div class="row">
                 <div class="col">Cust Name</div>

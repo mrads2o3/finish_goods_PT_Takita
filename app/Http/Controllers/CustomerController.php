@@ -18,9 +18,9 @@ class CustomerController extends Controller
     {
         try {
 
-            $query = Customer::where('cust_name', $req->cust_name);
+            $query = Customer::where('cust_name', $req->cust_name)->first();
 
-            if(count($query)){
+            if($query){
                 return back()->with('error', 'Customer name exist!');
             }
 
